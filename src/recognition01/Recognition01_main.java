@@ -44,7 +44,18 @@ public class Recognition01_main {
         System.out.println("age_score : " + age_score);
 		String Gender = node.get("images").get(0).get("faces").get(0).get("gender").get("gender").asText();
         System.out.println("Gender : " + Gender);
-		Double Gender_score = node.get("images").get(0).get("faces").get(0).get("gender").get("score").asDouble();
+		double Gender_score = node.get("images").get(0).get("faces").get(0).get("gender").get("score").asDouble();
         System.out.println("Gender_score : " + Gender_score);
+
+        int Gender_int;
+
+        if(Gender.equals("MALE")){
+        	Gender_int = 0;
+        }else{
+        	Gender_int = 1;
+        }
+
+        MySQL mysql = new MySQL();
+        mysql.updateImage(age_min, age_max, age_score, Gender_int, Gender_score);
 	}
 }
